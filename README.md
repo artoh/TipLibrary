@@ -1,2 +1,7 @@
 # TipLibrary
 University of Helsinki, Software engineering course work
+
+
+[Product backlog](https://docs.google.com/spreadsheets/d/18q2TkTrg6wRqFxhb1a1NQWHXiTSPJFS7uFT90E7AGEQ/edit?usp=sharing)
+
+[Sprint backlogs](https://docs.google.com/spreadsheets/d/1n06zsuneiQr93J8Tg0StO6YMmLqckqvX2F--6A1eAUU/edit?usp=sharing)
