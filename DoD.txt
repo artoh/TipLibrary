@@ -1,0 +1,7 @@
+Definition of Done -lähtökohta, suoraan tehtävänannosta https://ohjelmistotuotanto-hy-avoin.github.io/miniprojekti/
+
+User storyille on määritelty hyväksymiskriteerit.
+README:stä on linkki hyväksymiskriteerit määritteleviin tiedostoihin.
+Toteutetun koodin testikattavuus on 70%.
+Asiakas näkee koodin ja testien tilanteen milloin vain CI-palvelusta.
+Koodilla on hyvä ylläpidettävyys nimentöjen, arkkitehtuurin ja yhtenäisyyden osalta.
