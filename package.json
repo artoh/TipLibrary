@@ -37,6 +37,9 @@
   },
   "jest": {
     "collectCoverage": true,
+    "coverageReporters": [
+      "json", "text", "clover"
+    ],
     "collectCoverageFrom": [
       "**/*.{js}",
       "!**/node_modules/*"
