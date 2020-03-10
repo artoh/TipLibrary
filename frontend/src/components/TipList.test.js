@@ -1,3 +1,7 @@
+import TipList from "./TipList";
+
 describe("TipList", () => {
-  test("Shows a correct numner of items", () => {});
+  test("Component can be created", () => {
+    renderer.create(<TipList />);
+  });
 });
