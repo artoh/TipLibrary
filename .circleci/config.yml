@@ -21,7 +21,7 @@ jobs:
           command: |
             mkdir -p tmp/
             cd tmp
-            curl -L  https://codeclimate.com/downloads/test-reporter/test-repo
+            curl -L  https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
             chmod +x cc-test-reporter
       - persist_to_workspace:
           root: tmp
