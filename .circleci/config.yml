@@ -30,24 +30,23 @@ jobs:
       - run:
           command: npm install
       - run:
-          name: "Run tests for backend and frontend and upload nresults to Code Climate"
+          name: Run jest tests for backend and frontend and upload results to Code Climate"
           command: |
             npm test
-            ./tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ./tmp/codeclimate.total.json
-            ./tmp/cc-test-reporter upload-coverage -i ./tmp/codeclimate.total.json
+      #            ./tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ./tmp/codeclimate.total.json
+      #            ./tmp/cc-test-reporter upload-coverage -i ./tmp/codeclimate.total.json
       - run:
           command: cd frontend && npm install && npm build
 
-      - run: npm start & ./node_modules/.bin/cucumber-js
+      #      - run:
+      #          name: Run cucumber tests
+      #          command: npm start & ./node_modules/.bin/cucumber-js
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ~/project/node_modules
 
 workflows:
-  build-and-test:
-    jobs:
-      - build-and-test
   heroku_deploy:
     jobs:
       - build-and-test
