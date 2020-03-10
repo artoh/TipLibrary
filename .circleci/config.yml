@@ -35,7 +35,6 @@ workflows:
           filters:
             branches:
               only: master
-          environment:
-            HEROKU_APP: "tip-library"
+          app-name: "tip-library"
 
   version: 2
