@@ -20,6 +20,8 @@ jobs:
 
       - run:
           command: cd frontend && npm install && npm build && npm test
+
+      - run: npm start & ./node_modules/.bin/cucumber-js
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
