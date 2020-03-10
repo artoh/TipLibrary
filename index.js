@@ -14,6 +14,8 @@ const tips = [
     }
 ]
 
+app.use(express.static('frontend/build'))
+
 app.get('/api/tips', (req,res) => {
     res.send(tips)
 })
