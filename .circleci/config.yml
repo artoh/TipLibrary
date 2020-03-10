@@ -7,7 +7,7 @@ jobs:
     docker:
       - image: circleci/node:latest
     
-      environment:
+    environment:
         - CC_TEST_REPORTER_ID: f2fe609cbb5e4814f0ca6588ecb6cb3eedd5d9e2bb8fa985e88b15fe559ad25a        
     steps:
       - checkout
