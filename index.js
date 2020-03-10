@@ -20,7 +20,7 @@ app.get('/api/tips', (req,res) => {
     res.send(tips)
 })
 
-const port = process.env.APIPORT == undefined ? 3001 : process.env.APIPORT
+const port = process.env.PORT == undefined ? 3001 : process.env.APIPORT
 app.listen(port, () => {
     console.log(`TipLibrary Server running on port ${port}`)
 })
