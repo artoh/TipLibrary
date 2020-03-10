@@ -31,5 +31,5 @@ jobs:
       uses: akhileshns/heroku-deploy@master # This is the action
       with:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-        heroku_app_name: "tips-library"
+        heroku_app_name: "tip-library"
         heroku_email: "arto.hyvattinen@gmail.com"
