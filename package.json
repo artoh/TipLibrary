@@ -4,7 +4,7 @@
   "description": "University of Helsinki, Software engineering course work",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --runInBand",
     "start": "node index.js",
     "watch": "nodemon index.js",
     "heroku-postbuild": "cd frontend && npm install && npm run build"
@@ -20,12 +20,27 @@
   },
   "homepage": "https://github.com/artoh/TipLibrary#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-promise-router": "^3.0.3",
+    "mongodb-memory-server": "^6.3.2",
+    "mongoose": "^5.9.4",
+    "morgan": "^1.9.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "cucumber": "^6.0.5",
+    "jest": "^25.1.0",
     "nodemon": "^2.0.2",
-    "selenium-webdriver": "^4.0.0-alpha.7"
+    "selenium-webdriver": "^4.0.0-alpha.7",
+    "supertest": "^4.0.2"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{js}",
+      "!**/node_modules/*"
+    ],
+    "testEnvironment": "node"
   }
 }
