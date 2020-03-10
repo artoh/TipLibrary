@@ -20,7 +20,7 @@ jobs:
           name: Download cc-test-reporter
           command: |
             mkdir -p tmp/
-            curl - L  https://codeclimate.com/downloads/test-reporter/test-repo
+            curl -L  https://codeclimate.com/downloads/test-reporter/test-repo
             chmod +x ./tmp/cc-test-reporter
       - persist_to_workspace:
           root: tmp
