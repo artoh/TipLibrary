@@ -1,7 +1,7 @@
 # Orb 'circleci/node@1.1.6' resolved to 'circleci/node@1.1.6'
 version: 2.1
 orbs:
-  heroku: circleci/herokuapp@0.0.10.
+  heroku: circleci/heroku@1.0.1
 jobs:
   build-and-test:
     docker:
@@ -35,4 +35,6 @@ workflows:
           filters:
             branches:
               only: master
+          app-name: "tip-library"
+
   version: 2
