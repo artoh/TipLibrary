@@ -4,7 +4,7 @@
   "description": "University of Helsinki, Software engineering course work",
   "main": "index.js",
   "scripts": {
-    "test": "jest --runInBand --collect-coverage",
+    "test": "jest --runInBand",
     "start": "node index.js",
     "watch": "nodemon index.js",
     "heroku-postbuild": "cd frontend && npm install && npm run build"
@@ -38,6 +38,7 @@
   "jest": {
     "collectCoverage": true,
     "coverageReporters": [
+      "lcov",
       "json",
       "text",
       "clover"
