@@ -36,7 +36,12 @@ jobs:
       #            ./tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ./tmp/codeclimate.total.json
       #            ./tmp/cc-test-reporter upload-coverage -i ./tmp/codeclimate.total.json
       - run:
-          command: cd frontend && npm install && npm build
+          command: |
+            cd frontend
+            npm install 
+            npm build
+            ./tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ./tmp/codeclimate.frontend.json
+            ./tmp/cc-test-reporter upload-coverage -i ./tmp/codeclimate.frontend.json
 
       #      - run:
       #          name: Run cucumber tests
