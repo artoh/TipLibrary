@@ -12,51 +12,48 @@ jobs:
           keys:
             - node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
             - node-deps-v1-{{ .Branch }}
-            - node-deps-v1     
+            - node-deps-v1
       - run:
-            name: Download cc-test-reporter
-            command: |
-                mkdir -p tmp/
-                curl - L  https://codeclimate.com/downloads/test-reporter/test-repo
-                chmod +x ./tmp/cc-test-reporter
+          name: Download cc-test-reporter
+          command: |
+            mkdir -p tmp/
+            curl - L  https://codeclimate.com/downloads/test-reporter/test-repo
+            chmod +x ./tmp/cc-test-reporter
       - persist to workspace:
-            root: tmp
-            paths: 
-                - cc-test-reporter             
+          root: tmp
+          paths:
+            - cc-test-reporter
       - run:
           command: npm install
       - run:
-          command: | 
+          command: |
             npm test
             ./tmp/cc-test-reporter format-coverage -t lcov -o tmp/coodeclimate.backend.resultset.json
-     
 
       - run:
           command: cd frontend && npm install && npm build && npm test &&  ./tmp/cc-test-reporter format-coverage -t lcov -o tmp/coodeclimate.frontend.resultset.json
- 
+
       - persist_to_workspace:
-            root: tmp
-            paths: 
-               - codeclimate.backend.json      
-               - codeclimate.frontend.json
+          root: tmp
+          paths:
+            - codeclimate.backend.json
+            - codeclimate.frontend.json
       - run: npm start & ./node_modules/.bin/cucumber-js
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ~/project/node_modules
   upload-coverage:
-    <<: *defaults
     environment:
-        - CC_TEST_REPORTER_ID:
-    steps: 
-        - attach-workspace:
-            at: ~/repo/tmp
-        - run: 
-            name: Upload test coverage results to Code Climate
-            command: |   
-                ./tmp/cc-test-reporter sum-coverage tmp/codeClimate.*.json - p 2 -o tmp/codeclimate.total.json
-                ./tmp/cc-test-reporter upload-coverage -i tmp/codeclimate.total.json   
-  
+      - CC_TEST_REPORTER_ID:
+    steps:
+      - attach-workspace:
+          at: ~/repo/tmp
+      - run:
+          name: Upload test coverage results to Code Climate
+          command: |
+            ./tmp/cc-test-reporter sum-coverage tmp/codeClimate.*.json - p 2 -o tmp/codeclimate.total.json
+            ./tmp/cc-test-reporter upload-coverage -i tmp/codeclimate.total.json
 
 workflows:
   build-and-test:
