@@ -6,6 +6,9 @@ jobs:
   build-and-test:
     docker:
       - image: circleci/node:latest
+    
+      environment:
+        - CC_TEST_REPORTER_ID: f2fe609cbb5e4814f0ca6588ecb6cb3eedd5d9e2bb8fa985e88b15fe559ad25a        
     steps:
       - checkout
       - restore_cache:
@@ -38,17 +41,13 @@ jobs:
           paths:
             - codeclimate.backend.json
             - codeclimate.frontend.json
+
       - run: npm start & ./node_modules/.bin/cucumber-js
-      - save_cache:
+            - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ~/project/node_modules
-  upload-coverage:
-    environment:
-      - CC_TEST_REPORTER_ID:
-    steps:
-      - attach-workspace:
-          at: ~/repo/tmp
+
       - run:
           name: Upload test coverage results to Code Climate
           command: |
