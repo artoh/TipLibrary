@@ -34,7 +34,7 @@ jobs:
       - run:
           command: cd frontend && npm install && npm build && npm test &&  ./tmp/cc-test-reporter format-coverage -t lcov -o tmp/coodeclimate.frontend.resultset.json
  
-          - persist_to_workspace:
+      - persist_to_workspace:
             root: tmp
             paths: 
                - codeclimate.backend.json      
