@@ -36,17 +36,9 @@
     "supertest": "^4.0.2"
   },
   "jest": {
-    "collectCoverage": true,
-    "coverageReporters": [
-      "lcov",
-      "json",
-      "text",
-      "clover"
-    ],
-    "collectCoverageFrom": [
-      "**/*.{js}",
-      "!**/node_modules/*"
-    ],
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "frontend/*"
+    ]
   }
 }
