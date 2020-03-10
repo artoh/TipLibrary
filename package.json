@@ -23,6 +23,9 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "chai": "^4.2.0",
+    "cucumber": "^6.0.5",
+    "nodemon": "^2.0.2",
+    "selenium-webdriver": "^4.0.0-alpha.7"
   }
 }
