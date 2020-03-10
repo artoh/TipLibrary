@@ -17,6 +17,9 @@ jobs:
           command: npm install
       - run:
           command: npm test
+
+      - run:
+          command: cd frontend && npm install && npm build && npm test
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
