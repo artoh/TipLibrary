@@ -30,30 +30,19 @@ jobs:
       - run:
           command: npm install
       - run:
+          name: "Run tests for backend and frontend and upload nresults to Code Climate"
           command: |
             npm test
-            ./tmp/cc-test-reporter format-coverage -t lcov -o tmp/coodeclimate.backend.resultset.json
-
+            ./tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ./tmp/codeclimate.total.json
+            ./tmp/cc-test-reporter upload-coverage -i ./tmp/codeclimate.total.json
       - run:
-          command: cd frontend && npm install && npm build && npm test &&  ./tmp/cc-test-reporter format-coverage -t lcov -o tmp/coodeclimate.frontend.resultset.json
-
-      - persist_to_workspace:
-          root: tmp
-          paths:
-            - codeclimate.backend.json
-            - codeclimate.frontend.json
+          command: cd frontend && npm install && npm build
 
       - run: npm start & ./node_modules/.bin/cucumber-js
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ~/project/node_modules
-
-      - run:
-          name: Upload test coverage results to Code Climate
-          command: |
-            ./tmp/cc-test-reporter sum-coverage tmp/codeClimate.*.json - p 2 -o tmp/codeclimate.total.json
-            ./tmp/cc-test-reporter upload-coverage -i tmp/codeclimate.total.json
 
 workflows:
   build-and-test:
