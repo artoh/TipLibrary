@@ -1,5 +1,5 @@
 # Orb 'circleci/node@1.1.6' resolved to 'circleci/node@1.1.6'
-version: 2
+version: 2.1
 orbs:
   heroku: circleci/herokuapp@0.0.10.
 jobs:
@@ -21,6 +21,7 @@ jobs:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ~/project/node_modules
+
 workflows:
   build-and-test:
     jobs:
