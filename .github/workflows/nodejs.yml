@@ -28,4 +28,4 @@ jobs:
       env:
         CI: true
     - name: "Deploy to Heroku"
-      run: git push https://heroku:${{secrets.HEROKU_API_TOKEN}}@git.heroku.com/tip-library.git master
+      run: git push https://heroku:${{secrets.HEROKU_API_TOKEN}}@git.heroku.com/tip-library.git master --force
