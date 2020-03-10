@@ -1,26 +1,9 @@
- 
-const express = require('express')
-const app = express()
+const app = require("./app") 
+const http = require("http")
 
-
-const tips = [
-    {
-        title: "Full stack-kurssi",
-        link: "https://fullstackopen.com"
-    },
-    {
-        title: "DevOps-kurssi",
-        link: "https://devopswithdocker.com/"
-    }
-]
-
-app.use(express.static('frontend/build'))
-
-app.get('/api/tips', (req,res) => {
-    res.send(tips)
-})
-
+const server = http.createServer(app)
 const port = process.env.PORT == undefined ? 3001 : process.env.PORT
-app.listen(port, () => {
+
+server.listen(port, () => {
     console.log(`TipLibrary Server running on port ${port}`)
 })
