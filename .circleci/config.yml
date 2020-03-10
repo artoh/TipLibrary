@@ -39,7 +39,7 @@ jobs:
           command: |
             cd frontend
             npm install 
-            npm build
+            npm run build
             ./tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ./tmp/codeclimate.frontend.json
             ./tmp/cc-test-reporter upload-coverage -i ./tmp/codeclimate.frontend.json
 
