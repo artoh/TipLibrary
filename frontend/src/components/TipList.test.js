@@ -1,4 +1,3 @@
-describe("TipList"),
-  () => {
-    test("Shows a correct numner of items", () => {});
-  };
+describe("TipList", () => {
+  test("Shows a correct numner of items", () => {});
+});
