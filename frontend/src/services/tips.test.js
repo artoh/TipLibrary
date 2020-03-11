@@ -10,7 +10,7 @@ describe('tips', () => {
     it('returns response when create() is called', done => {
         const newTip = { title: 'test tip', link: 'www.tip.com' };
 
-        mock.onPost('http://localhost:3001/api/tips').reply(201, newTip);
+        mock.onPost('/api/tips').reply(201, newTip);
 
         db.create(newTip).then(response => {
             expect(response).toEqual(newTip);
@@ -30,7 +30,7 @@ describe('tips', () => {
             }
         };
 
-        mock.onGet('http://localhost:3001/api/tips').reply(200, tipList);
+        mock.onGet('/api/tips').reply(200, tipList);
 
         db.getAll().then(response => {
             expect(response).toEqual(tipList);
