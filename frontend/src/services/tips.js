@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API = 'http://localhost:3001/api/tips'
+const API = '/api/tips'
 
 const getAll = () => {
     const request = axios.get(API)
