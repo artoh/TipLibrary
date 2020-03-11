@@ -13,7 +13,7 @@ initMongoose();
 app.use(express.static('frontend/build'))
 app.use(morgan("combined"))
 app.use(bodyparser.json())
-app.use(cors)
+app.use(cors())
 
 app.use("/api/tips", tipsRoute)
 
