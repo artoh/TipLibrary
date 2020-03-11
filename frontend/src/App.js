@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import TipForm from "./components/TipForm";
 import db from './services/tips';
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
       title: newTitle,
       link: newLink
     };
-    db.create(newTip);
+    let response = db.create(newTip);
+    console.log(response)
   }
 
   const handleTitleChange = (event) => {
@@ -29,26 +31,6 @@ function App() {
       <TipForm createTip={createTip} newTitle={newTitle} newLink={newLink} 
       handleLinkChange={handleLinkChange} handleTitleChange={handleTitleChange} />
       <p>Tip list here</p>
-    </div>
-  )
-}
-
-const TipForm = ({ createTip, newTitle, newLink, handleLinkChange, handleTitleChange }) => {
-
-  return (
-    <div>
-      <h3>New tip</h3>
-      <form onSubmit={createTip}>
-        <div>
-          Title: <input value={newTitle} onChange={handleTitleChange} />
-        </div>
-        <div>
-          Link: <input value={newLink} onChange={handleLinkChange} />
-        </div>
-        <div>
-          <button type="submit">Create</button>
-        </div>
-      </form>
     </div>
   )
 }
