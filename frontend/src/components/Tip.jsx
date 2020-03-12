@@ -1,10 +1,10 @@
 import React from "react";
-import DeleteIcon from "@material-ui/icons/Delete";
+//import DeleteIcon from "@material-ui/icons/Delete";
 
 function Tip(props) {
-  function handleClick() {
-    props.onDelete(props.id);
-  }
+//  function handleClick() {
+//    props.onDelete(props.id);
+//  }
 
   return (
     <div className="tip">
