@@ -1,7 +1,7 @@
-Definition of Done -lähtökohta, suoraan tehtävänannosta https://ohjelmistotuotanto-hy-avoin.github.io/miniprojekti/
+Definition of Done
 
-User storyille on määritelty hyväksymiskriteerit.
-README:stä on linkki hyväksymiskriteerit määritteleviin tiedostoihin.
-Toteutetun koodin testikattavuus on 70%.
-Asiakas näkee koodin ja testien tilanteen milloin vain CI-palvelusta.
-Koodilla on hyvä ylläpidettävyys nimentöjen, arkkitehtuurin ja yhtenäisyyden osalta.
+Every user story has a scenario.
+README links to the scenario files.
+The finished code test coverage is at 70 %.
+The Customer sees both the Code and the Test Status at all times from the CI Service provider.
+Code maintainability over naming conventions, Architecture and code unity is of good a value.
