@@ -4,9 +4,24 @@ import Footer from "./Footer";
 import Tip from "./Tip";
 import CreateArea from "./CreateArea";
 import tipService from "../services/tips"
+import { useEffect } from "react";
 
 function App() {
+
   const [tips, setTips] = useState([]);
+
+  useEffect(() => {
+    const getTips = async () => {
+    try {
+      const tipsFromServer = await tipService.getAll()
+      setTips(tipsFromServer.map((tip) => { return { title: tip.title, description: tip.link}}))
+    } catch (e) {
+
+    }
+  }
+
+  getTips()
+  }, [])
 
   const addTip = async (newTip)  => {
     try {
