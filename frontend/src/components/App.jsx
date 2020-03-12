@@ -3,14 +3,22 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Tip from "./Tip";
 import CreateArea from "./CreateArea";
+import tipService from "../services/tips"
 
 function App() {
   const [tips, setTips] = useState([]);
 
-  function addTip(newTip) {
+  const addTip = async (newTip)  => {
+    try {
+      console.log(newTip)
+          const result = await tipService.create({title: newTip.title, link: newTip.description})
     setTips(prevTips => {
-      return [...prevTips, newTip];
+      return [...tips, 
+         {title: result.title, description: result.link}];
     });
+  } catch(e) {
+
+  }
   }
 
   /*function deleteTip(id) {
