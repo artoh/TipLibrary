@@ -22,4 +22,5 @@ module.exports = async () => {
     } else {
         initMongoInService();
     }
+    mongoose.set('useFindAndModify', false);
 }

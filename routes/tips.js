@@ -11,15 +11,21 @@ router.get("/", async (req,res) => {
 router.post("/", async (req,res) => {
     const body = req.body
 
-    if( body.title == undefined || body.link == undefined) {
-        return res.status(400).send({error:"Title or link undefined"})
-    }
-
     try {
-        await Tip.create({ title: body.title, link: body.link})
+        res.status(201).send(await Tip.create({ title: body.title, link: body.link}))
     } catch (e) {
         console.log(e.stack)
         return res.status(500)
     }
-    res.status(201).send(body)
+})
+
+router.put('/:id', async (req, res) => {
+    const body = req.body
+   
+    try {
+        res.send(await Tip.findByIdAndUpdate(req.params.id, body, {new: true}))
+    } catch (e) {
+        console.log(e.stack)
+        return res.status(500)
+    }
 })
