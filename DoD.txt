@@ -5,4 +5,4 @@ README links to the scenario files.
 The finished code test coverage is at 70 %.
 The Customer sees both the Code and the Test Status at all times from the CI Service provider.
 Code maintainability over naming conventions, Architecture and code unity is of good a value.
-Customer cand edit the Title, Link and Description of the Reading Tip.
+Customer can edit the Title, Link and Description of the Reading Tip.
