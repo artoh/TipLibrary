@@ -14,7 +14,7 @@ function App() {
     const getTips = async () => {
     try {
       const tipsFromServer = await tipService.getAll()
-      setTips(tipsFromServer.map((tip) => { return { title: tip.title, description: tip.link}}))
+      setTips(tipsFromServer)
     } catch (e) {
 
     }
@@ -29,11 +29,16 @@ function App() {
           const result = await tipService.create({title: newTip.title, link: newTip.description})
     setTips(prevTips => {
       return [...tips, 
-         {title: result.title, description: result.link}];
+         {title: result.title, link: result.link}];
     });
   } catch(e) {
 
   }
+  }
+
+  const updateTip = async (id, tip) => { 
+    const newtip = await tipService.update(id, tip)
+    setTips(tips.filter(tip => tip.id !== id).concat(newtip))
   }
 
   /*function deleteTip(id) {
@@ -51,11 +56,8 @@ function App() {
       {tips.map((tipItem, index) => {
         return (
           <Tip
-            key={index}
-            id={index}
-            title={tipItem.title}
-            description={tipItem.description}
-            tag={tipItem.tag}
+            tip={tipItem}
+            onUpdate={updateTip}
             /*onDelete={deleteTip}*/
           />
         );
