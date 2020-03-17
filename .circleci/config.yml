@@ -51,7 +51,8 @@ jobs:
 
           command: |
           echo 'export PATH=$CIRCLE_WORKING_DIRECTORY/node_modules/chromedriver/lib//:$PATH' >> $BASH_ENV
-            node index.js & ./node_modules/.bin/cucumber-js
+          node index.js & ./node_modules/.bin/cucumber-js
+          
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
