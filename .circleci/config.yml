@@ -10,8 +10,6 @@ jobs:
     environment:
       - CC_TEST_REPORTER_ID: f2fe609cbb5e4814f0ca6588ecb6cb3eedd5d9e2bb8fa985e88b15fe559ad25a
 
-      - image: selenium/standalone-chrome
-
     steps:
       - checkout
       - restore_cache:
@@ -33,7 +31,7 @@ jobs:
       - run:
           command: npm install
       - run:
-          name: Run jest unit tests for backend 
+          name: Run jest unit tests for backend
           command: |
             npm test
       #            ./tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ./tmp/codeclimate.total.json
@@ -52,11 +50,8 @@ jobs:
           name: Run cucumber acceptance tests
           paths:
             - ~/project/node_modules/chromedriver/lib/
-   
-          command: |
-          curl -L https://chromedriver.storage.googleapis.com/81.0.4044.20/chromedriver_linux64.zip
 
-          node index.js & ./node_modules/.bin/cucumber-js
+          command: node index.js & ./node_modules/.bin/cucumber-js
 
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
