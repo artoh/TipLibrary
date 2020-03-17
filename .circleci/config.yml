@@ -39,6 +39,7 @@ jobs:
       #            ./tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ./tmp/codeclimate.total.json
       #            ./tmp/cc-test-reporter upload-coverage -i ./tmp/codeclimate.total.json
       - run:
+          name: Build and test frontend
           command: |
             cd frontend
             npm install 
@@ -47,9 +48,10 @@ jobs:
             ../tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ../tmp/codeclimate.frontend.json
             ../tmp/cc-test-reporter upload-coverage -i ../tmp/codeclimate.frontend.json
 
-            - run:
-                name: Run cucumber tests
-                command: npm start & ./node_modules/.bin/cucumber-js
+      - run:
+          name: Run cucumber acceptance tests
+           command: node index.js & ./node_modules/.bin/cucumber-js
+           
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
