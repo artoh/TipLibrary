@@ -9,6 +9,9 @@ jobs:
 
     environment:
       - CC_TEST_REPORTER_ID: f2fe609cbb5e4814f0ca6588ecb6cb3eedd5d9e2bb8fa985e88b15fe559ad25a
+
+      -image: selenium/standalone-chrome
+
     steps:
       - checkout
       - restore_cache:
@@ -44,9 +47,9 @@ jobs:
             ../tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ../tmp/codeclimate.frontend.json
             ../tmp/cc-test-reporter upload-coverage -i ../tmp/codeclimate.frontend.json
 
-      #      - run:
-      #          name: Run cucumber tests
-      #          command: npm start & ./node_modules/.bin/cucumber-js
+            - run:
+                name: Run cucumber tests
+                command: npm start & ./node_modules/.bin/cucumber-js
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
