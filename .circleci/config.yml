@@ -49,7 +49,7 @@ jobs:
       - run:
           name: Run cucumber acceptance tests
           environment:
-            - PATH: ~/project/node_modules/chromedriver/lib/
+            - PATH: {$PATH}:~/project/node_modules/chromedriver/lib/
 
           command: node index.js & ./node_modules/.bin/cucumber-js
 
