@@ -33,13 +33,13 @@ jobs:
       - run:
           command: npm install
       - run:
-          name: Run jest tests for backend and frontend and upload results to Code Climate"
+          name: Run jest unit tests for backend 
           command: |
             npm test
       #            ./tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ./tmp/codeclimate.total.json
       #            ./tmp/cc-test-reporter upload-coverage -i ./tmp/codeclimate.total.json
       - run:
-          name: Build and test frontend
+          name: Build and run jest unit tests for frontend
           command: |
             cd frontend
             npm install 
@@ -50,7 +50,13 @@ jobs:
 
       - run:
           name: Run cucumber acceptance tests
-          command: node index.js & ./node_modules/.bin/cucumber-js
+          paths:
+            - ~/project/node_modules/chromedriver/lib/
+   
+          command: |
+          curl -L https://chromedriver.storage.googleapis.com/81.0.4044.20/chromedriver_linux64.zip
+
+          node index.js & ./node_modules/.bin/cucumber-js
 
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
