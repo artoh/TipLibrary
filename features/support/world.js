@@ -1,17 +1,14 @@
-const {setWorldConstructor} = require("cucumber")
-const seleniumWebdriver = require("selenium-webdriver")
+const { setWorldConstructor } = require("cucumber");
+require("chromedriver");
+const seleniumWebdriver = require("selenium-webdriver");
 
 function customWorld() {
+  this.driver = new seleniumWebdriver.Builder().forBrowser("chrome").build();
 
-    this.driver = new seleniumWebdriver.Builder()
-        .forBrowser("chrome")
-        .build()
-
-    this.waitForElement = function(locator) {
-        const condition = seleniumWebdriver.until.elementLocated(locator)
-        return this.driver.wait(condition)
-    }
-
+  this.waitForElement = function(locator) {
+    const condition = seleniumWebdriver.until.elementLocated(locator);
+    return this.driver.wait(condition);
+  };
 }
 
-setWorldConstructor(customWorld)
+setWorldConstructor(customWorld);

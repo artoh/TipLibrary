@@ -46,12 +46,10 @@ jobs:
             ../tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ../tmp/codeclimate.frontend.json
             ../tmp/cc-test-reporter upload-coverage -i ../tmp/codeclimate.frontend.json
 
-      # - run:
-      #     name: Run cucumber acceptance tests
-      #     environment:
-      #       - PATH: {$PATH}:~/project/node_modules/chromedriver/lib/
-      #
-      #      command: node index.js & ./node_modules/.bin/cucumber-js
+      - run:
+          name: Run cucumber acceptance tests
+
+          command: npm start & ./node_modules/.bin/cucumber-js
 
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
