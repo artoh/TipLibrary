@@ -46,12 +46,12 @@ jobs:
             ../tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ../tmp/codeclimate.frontend.json
             ../tmp/cc-test-reporter upload-coverage -i ../tmp/codeclimate.frontend.json
 
+      - run: echo 'export PATH=$CIRCLE_WORKING_DIRECTORY/node_modules/chromedriver/lib/:$PATH' >> $BASH_ENV
+
       - run:
           name: Run cucumber acceptance tests
 
-          command: |
-            echo 'export PATH=$CIRCLE_WORKING_DIRECTORY/node_modules/chromedriver/lib//:$PATH' >> $BASH_ENV
-            node index.js & ./node_modules/.bin/cucumber-js
+          command: node index.js & ./node_modules/.bin/cucumber-js
 
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
