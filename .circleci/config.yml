@@ -10,8 +10,6 @@ jobs:
     environment:
       - CC_TEST_REPORTER_ID: f2fe609cbb5e4814f0ca6588ecb6cb3eedd5d9e2bb8fa985e88b15fe559ad25a
 
-      - image: selenium/standalone-chrome
-
     steps:
       - checkout
       - restore_cache:
@@ -33,12 +31,13 @@ jobs:
       - run:
           command: npm install
       - run:
-          name: Run jest tests for backend and frontend and upload results to Code Climate"
+          name: Run jest unit tests for backend
           command: |
             npm test
       #            ./tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ./tmp/codeclimate.total.json
       #            ./tmp/cc-test-reporter upload-coverage -i ./tmp/codeclimate.total.json
       - run:
+          name: Build and run jest unit tests for frontend
           command: |
             cd frontend
             npm install 
@@ -47,9 +46,13 @@ jobs:
             ../tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ../tmp/codeclimate.frontend.json
             ../tmp/cc-test-reporter upload-coverage -i ../tmp/codeclimate.frontend.json
 
-            - run:
-                name: Run cucumber tests
-                command: npm start & ./node_modules/.bin/cucumber-js
+      # - run:
+      #     name: Run cucumber acceptance tests
+      #     environment:
+      #       - PATH: {$PATH}:~/project/node_modules/chromedriver/lib/
+      #
+      #      command: node index.js & ./node_modules/.bin/cucumber-js
+
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
