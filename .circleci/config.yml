@@ -48,11 +48,10 @@ jobs:
 
       - run:
           name: Run cucumber acceptance tests
-          environment:
-            - PATH: {$PATH}:~/project/node_modules/chromedriver/lib/
 
-          command: node index.js & ./node_modules/.bin/cucumber-js
-
+          command: |
+            echo 'export PATH=$CIRCLE_WORKING_DIRECTORY/node_modules/chromedriver/lib//:$PATH'
+            node index.js & ./node_modules/.bin/cucumber-js
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
