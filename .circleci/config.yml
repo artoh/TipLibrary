@@ -50,8 +50,8 @@ jobs:
 
       - run:
           name: Run cucumber acceptance tests
-           command: node index.js & ./node_modules/.bin/cucumber-js
-           
+          command: node index.js & ./node_modules/.bin/cucumber-js
+
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
