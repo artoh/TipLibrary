@@ -10,7 +10,7 @@ jobs:
     environment:
       - CC_TEST_REPORTER_ID: f2fe609cbb5e4814f0ca6588ecb6cb3eedd5d9e2bb8fa985e88b15fe559ad25a
 
-      -image: selenium/standalone-chrome
+      - image: selenium/standalone-chrome
 
     steps:
       - checkout
