@@ -13,22 +13,27 @@ public class Stepdefs {
 
     }
 
-    @Given("add tip description is clicked")
+    @Given("I am on the front page")
+    public void iAmOnTheFrontPage() {
+
+    }
+
+    @When("add tip description is clicked")
     public void addTipDescriptionIsClicked() {
 
     }
 
-    @Given("add tip link is clicked")
+    @When("add tip link is clicked")
     public void addTipLinkIsClicked() {
 
     }
 
-    @Given("add tip title is clicked")
+    @When("add tip title is clicked")
     public void addTipTitleIsClicked() {
 
     }
 
-    @Given("tip list box is clicked")
+    @When("tip list box is clicked")
     public void tipListBoxIsClicked() {
 
     }
@@ -83,18 +88,33 @@ public class Stepdefs {
         
     }
 
-    @Then("the description should contain a text-element")
+    @Then("the description should contain a {text-element}")
     public void descriptionShouldContainText() {
         
     }
 
-    @Then("the link should contain a URL-address")
+    @Then("the link should contain a {URL-address}")
     public void linkShouldContainURL() {
         
     }
 
-    @Then("the title should contain a String")
+    @Then("the title should contain a {String}")
     public void titleShouldContainString() {
+        
+    }
+
+    @Then("the browser shows a {String} in the tip title")
+    public void browserShowsAStringInTheTitle() {
+        
+    }
+
+    @Then("the browser shows a {URL-address} in the tip link")
+    public void browserShowsURLInTheLink() {
+        
+    }
+
+    @Then("the browser shows a {text-element} in the tip description")
+    public void browserShowsTextInTheDescription() {
         
     }
 }
