@@ -1,23 +1,79 @@
-import React from 'react';
+import React, { useState } from "react";
+import TextField from '@material-ui/core/TextField';
+import AddIcon from "@material-ui/icons/Add";
+import Fab from "@material-ui/core/Fab";
+import Zoom from "@material-ui/core/Zoom";
 
-const TipForm = ({ createTip, newTitle, newLink, handleLinkChange, handleTitleChange }) => {
+function TipForm(props) {
+  const [isExpanded, setExpanded] = useState(false);
 
-    return (
-      <div>
-        <h3>New tip</h3>
-        <form onSubmit={createTip}>
-          <div>
-            Title: <input value={newTitle} onChange={handleTitleChange} />
-          </div>
-          <div>
-            Link: <input value={newLink} onChange={handleLinkChange} />
-          </div>
-          <div>
-            <button type="submit">Create</button>
-          </div>
-        </form>
-      </div>
-    )
-  };
-  
-  export default TipForm;
+  const [tip, setTip] = useState({
+    title: "",
+    link: "",
+    description: ""
+  });
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+
+    setTip(prevTip => {
+      return {
+        ...prevTip,
+        [name]: value
+      };
+    });
+  }
+
+  function submitTip(event) {
+    props.onAdd(tip);
+    setTip({
+      title: "",
+      link: "",
+      description: ""
+    });
+    event.preventDefault();
+    setExpanded(false);
+  }
+
+  function expand() {
+    setExpanded(true);
+  }
+
+  return (
+    <div>
+      <form className="create-tip">
+        <h3>Add a new tip</h3>
+        <TextField
+          name="title"
+          variant="outlined"
+          label="Title"
+          margin="normal"
+          fullWidth={true}
+          onChange={handleChange}
+          onClick={expand}
+          value={tip.title}
+        />
+
+        {isExpanded &&
+          <TextField
+            name="link"
+            variant="outlined"
+            label="Link"
+            margin="normal"
+            fullWidth={true}
+            onChange={handleChange}
+            value={tip.link}
+          />
+        }
+
+        <Zoom in={isExpanded}>
+          <Fab onClick={submitTip}>
+            <AddIcon />
+          </Fab>
+        </Zoom>
+      </form>
+    </div>
+  );
+}
+
+export default TipForm;
