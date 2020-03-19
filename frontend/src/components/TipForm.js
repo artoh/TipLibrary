@@ -2,15 +2,13 @@ import React, { useState } from "react";
 import TextField from '@material-ui/core/TextField';
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
-import Zoom from "@material-ui/core/Zoom";
 
 function TipForm(props) {
   const [isExpanded, setExpanded] = useState(false);
 
   const [tip, setTip] = useState({
     title: "",
-    link: "",
-    description: ""
+    link: ""
   });
 
   function handleChange(event) {
@@ -28,8 +26,7 @@ function TipForm(props) {
     props.onAdd(tip);
     setTip({
       title: "",
-      link: "",
-      description: ""
+      link: ""
     });
     event.preventDefault();
     setExpanded(false);
@@ -66,11 +63,12 @@ function TipForm(props) {
           />
         }
 
-        <Zoom in={isExpanded}>
-          <Fab onClick={submitTip}>
+        {isExpanded &&
+          <Fab name="create" onClick={submitTip}>
             <AddIcon />
           </Fab>
-        </Zoom>
+        }
+
       </form>
     </div>
   );
