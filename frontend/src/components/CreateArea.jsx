@@ -4,10 +4,11 @@ import Fab from "@material-ui/core/Fab";
 import Zoom from "@material-ui/core/Zoom";
 
 function CreateArea(props) {
-  const [isExpanded, setExpanded] = useState(false);
+  const [isExpanded, setExpanded] = useState(true);
 
   const [tip, setTip] = useState({
     title: "",
+    link: "",
     description: "",
     tag: ""
   });
@@ -27,6 +28,7 @@ function CreateArea(props) {
     props.onAdd(tip);
     setTip({
       title: "",
+      link: "",
       description: "",
       tag: ""
     });
@@ -45,17 +47,35 @@ function CreateArea(props) {
             name="title"
             onChange={handleChange}
             value={tip.title}
-            placeholder="Add a reading title"
+            placeholder="Add a Tip Title"
           />
         )}
+
+        <textarea
+          name="link"
+          onClick={expand}
+          onChange={handleChange}
+          value={tip.link}
+          placeholder="Add a Tip Link"
+          rows={isExpanded ? 1 : 1}
+        />
 
         <textarea
           name="description"
           onClick={expand}
           onChange={handleChange}
           value={tip.description}
-          placeholder="Add a reading tip ..."
+          placeholder="Add a Tip Description"
           rows={isExpanded ? 3 : 1}
+        />
+
+        <textarea
+          name="tag"
+          onClick={expand}
+          onChange={handleChange}
+          value={tip.tag}
+          placeholder="Add a Tip Tag"
+          rows={isExpanded ? 1 : 1}
         />
         <Zoom in={isExpanded}>
           <Fab onClick={submitTip}>

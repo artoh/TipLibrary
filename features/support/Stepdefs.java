@@ -88,6 +88,21 @@ public class Stepdefs {
         
     }
 
+    @When("{Donald Duck} is written in the title field")
+    public void donaldDuckIsWrittenInTitle() {
+        
+    }
+
+    @When("{Donald Duck video} is written in the description field")
+    public void donaldDuckVideoIsWrittenInDescription() {
+        
+    }
+
+    @When("Button + is pressed")
+    public void buttonPlusIsPressed() {
+        
+    }
+
     @Then("the description should contain a {text-element}")
     public void descriptionShouldContainText() {
         
@@ -115,6 +130,16 @@ public class Stepdefs {
 
     @Then("the browser shows a {text-element} in the tip description")
     public void browserShowsTextInTheDescription() {
+        
+    }
+
+    @Then("a tip with {Donald Duck} as title is shown")
+    public void tipWithDonaldDuckAsTitleIsShown() {
+        
+    }
+
+    @Then("a tip with {Donald Duck video} as description is shown")
+    public void tipWithDonaldDuckVideoAsDescriptionIsShown() {
         
     }
 }

@@ -6,7 +6,7 @@ function Header() {
     <header>
       <h1>
         <BookIcon />
-        TipLibrary
+        Tip Library
       </h1>
     </header>
   );

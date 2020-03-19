@@ -9,6 +9,7 @@ function Tip(props) {
   return (
     <div className="tip">
       <h1>{props.title}</h1>
+      <p>{props.link}</p>
       <p>{props.description}</p>
       <p>{props.tag}</p>
       {/* <button onClick={handleClick}>
