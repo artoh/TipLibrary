@@ -7,20 +7,20 @@ describe("Not-expanded <TipForm> component", () => {
 
   test("Component renders title input field", () => {
     const component = render(<TipForm />)
-    const field = component.container.querySelector("[name='title'")
-    expect(field).toBeInTheDocument()
+    const titleField = component.container.querySelector("[name='title'")
+    expect(titleField).toBeInTheDocument()
   })
 
-  test("Component doest not render link input field", () => {
+  test("Component does not render link input field", () => {
     const component = render(<TipForm />)
-    const field = component.container.querySelector("[name='link'")
-    expect(field).toBeNull()
+    const linkField = component.container.querySelector("[name='link'")
+    expect(linkField).toBeNull()
   })
 
-  test("Component doest not render create button", () => {
+  test("Component does not render create button", () => {
     const component = render(<TipForm />)
-    const btn = component.container.querySelector("[name='create'")
-    expect(btn).toBeNull()
+    const createBtn = component.container.querySelector("[name='create'")
+    expect(createBtn).toBeNull()
   })
 
 })
@@ -29,24 +29,24 @@ describe("Expanded <TipForm> component", () => {
 
   test("Component renders title input field", () => {
     const component = render(<TipForm />)
-    const field = component.container.querySelector("[name='title'")
-    expect(field).toBeInTheDocument()
+    const titleField = component.container.querySelector("[name='title'")
+    expect(titleField).toBeInTheDocument()
   })
 
   test("Component renders link input field", () => {
     const component = render(<TipForm />)
     const titleField = component.container.querySelector("[name='title'")
     titleField.click()
-    const field = component.container.querySelector("[name='link'")
-    expect(field).toBeInTheDocument()
+    const linkField = component.container.querySelector("[name='link'")
+    expect(linkField).toBeInTheDocument()
   })
 
   test("Component renders create button", () => {
     const component = render(<TipForm />)
     const titleField = component.container.querySelector("[name='title'")
     titleField.click()
-    const btn = component.container.querySelector("[name='create'")
-    expect(btn).toBeInTheDocument()
+    const createBtn = component.container.querySelector("[name='create'")
+    expect(createBtn).toBeInTheDocument()
   })
 })
 

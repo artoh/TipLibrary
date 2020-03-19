@@ -11,7 +11,7 @@ function TipForm(props) {
     link: ""
   });
 
-  function handleChange(event) {
+  const handleChange = (event) => {
     const { name, value } = event.target;
 
     setTip(prevTip => {
@@ -22,7 +22,7 @@ function TipForm(props) {
     });
   }
 
-  function submitTip(event) {
+  const submitTip = (event) => {
     props.onAdd(tip);
     setTip({
       title: "",
@@ -32,7 +32,7 @@ function TipForm(props) {
     setExpanded(false);
   }
 
-  function expand() {
+  const expand = () => {
     setExpanded(true);
   }
 

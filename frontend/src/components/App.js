@@ -11,42 +11,34 @@ function App() {
 
   useEffect(() => {
     const getTips = async () => {
+      try {
+        const tipsFromServer = await tipService.getAll()
+        setTips(tipsFromServer)
+      } catch (e) {
+
+      }
+    }
+
+    getTips()
+  }, [])
+
+  const addTip = async (newTip) => {
     try {
-      const tipsFromServer = await tipService.getAll()
-      setTips(tipsFromServer)
+      console.log(newTip)
+      const result = await tipService.create({ title: newTip.title, link: newTip.link })
+      setTips(prevTips => {
+        return [...tips,
+        { title: result.title, link: result.link }];
+      });
     } catch (e) {
 
     }
   }
 
-  getTips()
-  }, [])
-
-  const addTip = async (newTip)  => {
-    try {
-      console.log(newTip)
-          const result = await tipService.create({title: newTip.title, link: newTip.link})
-    setTips(prevTips => {
-      return [...tips, 
-         {title: result.title, link: result.link}];
-    });
-  } catch(e) {
-
-  }
-  }
-
-  const updateTip = async (id, tip) => { 
+  const updateTip = async (id, tip) => {
     const newtip = await tipService.update(id, tip)
     setTips(tips.filter(tip => tip.id !== id).concat(newtip))
   }
-
-  /*function deleteTip(id) {
-    setTips(prevTips => {
-      return prevTips.filter((tipItem, index) => {
-        return index !== id;
-      });
-    });
-  }*/
 
   return (
     <div>
@@ -57,7 +49,6 @@ function App() {
           <Tip
             tip={tipItem}
             onUpdate={updateTip}
-            /*onDelete={deleteTip}*/
           />
         );
       })}
