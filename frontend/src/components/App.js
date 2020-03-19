@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Header from "./Header";
-import Footer from "./Footer";
 import Tip from "./Tip";
-import CreateArea from "./CreateArea";
+import TipForm from "./TipForm";
 import tipService from "../services/tips"
 import { useEffect } from "react";
 
@@ -26,7 +25,7 @@ function App() {
   const addTip = async (newTip)  => {
     try {
       console.log(newTip)
-          const result = await tipService.create({title: newTip.title, link: newTip.description})
+          const result = await tipService.create({title: newTip.title, link: newTip.link})
     setTips(prevTips => {
       return [...tips, 
          {title: result.title, link: result.link}];
@@ -52,7 +51,7 @@ function App() {
   return (
     <div>
       <Header />
-      <CreateArea onAdd={addTip} />
+      <TipForm onAdd={addTip} />
       {tips.map((tipItem, index) => {
         return (
           <Tip
@@ -62,7 +61,6 @@ function App() {
           />
         );
       })}
-      <Footer />
     </div>
   );
 }

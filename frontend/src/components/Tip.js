@@ -37,6 +37,7 @@ const Tip = (props) => {
                     name="title" 
                     variant="outlined"
                     label="Title"
+                    margin="normal"
                     value={title} 
                     onChange={ e => 
                     setTitle(e.target.value)}/>}
@@ -47,6 +48,7 @@ const Tip = (props) => {
                     name="link" 
                     variant="outlined"
                     label="Link"
+                    margin="normal"
                     value={link} 
                     onChange={e => setLink(e.target.value)}/>}
 
