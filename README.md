@@ -21,3 +21,5 @@ Features
   - [As a user I want to be able to create and view a tip link](/features/creatingTipTitle.feature)
 - Editing the tip title
   - [As a user I want to be able to edit the tip title](/features/editingTipTitle.feature)
+- Editing the tip link
+  - [As a user I want to be able to edit the tip link](/features/editingTipLink.feature)
