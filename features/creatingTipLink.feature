@@ -1,4 +1,4 @@
-Feature: As a user I want to be able to create the tip link
+Feature: As a user I want to be able to create and view a tip link
 
   Scenario: user can create a new tip with link
     Given I am on the front page

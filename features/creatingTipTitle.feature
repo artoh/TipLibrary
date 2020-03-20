@@ -1,4 +1,4 @@
-Feature: As a user I want to be able to create the tip title
+Feature: As a user I want to be able to create and view the tip title
 
   Scenario: user can create a new tip title
     Given I am on the front page
