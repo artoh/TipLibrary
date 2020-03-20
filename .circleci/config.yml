@@ -46,15 +46,15 @@ jobs:
             ../tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ../tmp/codeclimate.frontend.json
             ../tmp/cc-test-reporter upload-coverage -i ../tmp/codeclimate.frontend.json
 
-      - run:
-          name: Run cucumber acceptance tests
-
-          command: |
-            apt-get install chromium-browser
-            npm start & ./node_modules/.bin/cucumber-js --name "Front Page"
-            ./node_modules/.bin/cucumber-js --name "user can create a new tip with link"
-            ./node_modules/.bin/cucumber-js --name "user can create a new tip title"
-            ./node_modules/.bin/cucumber-js --name "user can edit a title"
+      #      - run:
+      #          name: Run cucumber acceptance tests
+      #
+      #          command: |
+      #            apt-get install chromium-browser
+      #            npm start & ./node_modules/.bin/cucumber-js --name "Front Page"
+      #            ./node_modules/.bin/cucumber-js --name "user can create a new tip with link"
+      #            ./node_modules/.bin/cucumber-js --name "user can create a new tip title"
+      #            ./node_modules/.bin/cucumber-js --name "user can edit a title"
 
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
