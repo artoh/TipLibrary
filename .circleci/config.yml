@@ -49,7 +49,11 @@ jobs:
       - run:
           name: Run cucumber acceptance tests
 
-          command: npm start & ./node_modules/.bin/cucumber-js --name "Front page"
+          command: |
+            npm start & ./node_modules/.bin/cucumber-js --name "Front Page"
+            ./node_modules/.bin/cucumber-js --name "user can create a new tip with link"
+            ./node_modules/.bin/cucumber-js --name "user can create a new tip title
+            ./node_modules/.bin/cucumber-js --name "user can edit a title"
 
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
