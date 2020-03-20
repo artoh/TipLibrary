@@ -18,7 +18,7 @@ Features
 
 - Saving a tip and viewing a tip
   - [As a user I want to be able to create and view the tip title](/features/creatingTipTitle.feature)
-  - [As a user I want to be able to create and view a tip link](/features/creatingTipTitle.feature)
+  - [As a user I want to be able to create and view a tip link](/features/creatingTipLink.feature)
 - Editing the tip title
   - [As a user I want to be able to edit the tip title](/features/editingTipTitle.feature)
 - Editing the tip link
