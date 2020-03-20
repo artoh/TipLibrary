@@ -45,6 +45,7 @@ jobs:
             npm test
             ../tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ../tmp/codeclimate.frontend.json
             ../tmp/cc-test-reporter upload-coverage -i ../tmp/codeclimate.frontend.json
+            bash <(curl -s https://codecov.io/bash)
 
       #      - run:
       #          name: Run cucumber acceptance tests

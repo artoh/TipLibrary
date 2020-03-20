@@ -4,7 +4,7 @@ University of Helsinki, Software engineering course work
 
 [![CircleCI](https://circleci.com/gh/artoh/TipLibrary.svg?style=svg)](https://circleci.com/gh/artoh/TipLibrary)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f0882b5a7b0aad6e55c3/maintainability)](https://codeclimate.com/github/artoh/TipLibrary/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/f0882b5a7b0aad6e55c3/test_coverage)](https://codeclimate.com/github/artoh/TipLibrary/test_coverage)
+[![Test Coverage](https://codecov.io/gh/artoh/TipLibrary/branch/master/graph/badge.svg)](https://codecov.io/gh/artoh/TipLibrary)
 
 [The TipLibrary App](https://tip-library.herokuapp.com/)
 
