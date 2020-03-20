@@ -40,7 +40,7 @@ jobs:
           name: Build and run jest unit tests for frontend
           command: |
             cd frontend
-            npm install 
+            npm install
             npm run build
             npm test
             ../tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ../tmp/codeclimate.frontend.json
@@ -50,6 +50,7 @@ jobs:
           name: Run cucumber acceptance tests
 
           command: |
+            apt-get install chromium-browser
             npm start & ./node_modules/.bin/cucumber-js --name "Front Page"
             ./node_modules/.bin/cucumber-js --name "user can create a new tip with link"
             ./node_modules/.bin/cucumber-js --name "user can create a new tip title"
