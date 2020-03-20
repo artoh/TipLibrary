@@ -5,5 +5,5 @@ Feature: As a user I want to be able to create the tip link
     And add title field is clicked 
     When an "URL address" is entered to the add tip link field
     And Button + is pressed
-    Then a tip with the link "URL-address" is shown
+    Then a tip with the link "URL address" is shown
 

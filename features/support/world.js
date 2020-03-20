@@ -9,6 +9,11 @@ function customWorld() {
     const condition = seleniumWebdriver.until.elementLocated(locator);
     return this.driver.wait(condition);
   };
+
+  this.waitForElements = function(locator) {
+    const condition = seleniumWebdriver.until.elementsLocated(locator);
+    return this.driver.wait(condition);
+  };
 }
 
 setWorldConstructor(customWorld);
