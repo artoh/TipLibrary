@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 
-function TipForm(props) {
+const TipForm = (props) => {
   const [isExpanded, setExpanded] = useState(false);
 
   const [tip, setTip] = useState({
@@ -40,6 +40,7 @@ function TipForm(props) {
     <div>
       <form className="create-tip">
         <h3>Add a new tip</h3>
+
         <TextField
           name="title"
           variant="outlined"
@@ -47,6 +48,7 @@ function TipForm(props) {
           margin="normal"
           fullWidth={true}
           onChange={handleChange}
+          onSelect={expand}
           onClick={expand}
           value={tip.title}
         />
