@@ -2,7 +2,9 @@ const mongoose = require("mongoose")
 
 const tipSchema = new mongoose.Schema({
     title: String,
-    link: String
+    link: String,
+    description: String,
+    tags: [String]
 })
 
 tipSchema.set('toJSON', {
