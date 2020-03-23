@@ -1,9 +1,17 @@
-const { Given, When, Then } = require("cucumber");
+const { Given, When, Then, After, Before } = require("cucumber");
 const { By, Key } = require("selenium-webdriver");
 const { expect } = require("chai");
 
-Given("I am on the front page", function() {
-  this.driver.get("localhost:3001");
+let browser = null;
+
+Before(async function () { browser = await this.puppeteer.launch({headless: false}) })
+After (async function () { await browser.close()})
+Given("I am on the front page", async function () {
+
+  
+  const page = await browser.newPage()
+  await page.goto("localhost:3001")
+  //this.driver.get("localhost:3001");
 });
 
 When("edit button is clicked", function() {
