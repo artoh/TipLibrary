@@ -50,12 +50,7 @@ jobs:
       - run:
           name: Run cucumber acceptance tests
       
-          command: |
-            apt-get install chromium-browser
-            npm start & ./node_modules/.bin/cucumber-js --name "Front Page"
-           ./node_modules/.bin/cucumber-js --name "user can create a new tip with link"
-           ./node_modules/.bin/cucumber-js --name "user can create a new tip title"
-           ./node_modules/.bin/cucumber-js --name "user can edit a title"
+          command: npm start & ./node_modules/.bin/cucumber-js
 
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
