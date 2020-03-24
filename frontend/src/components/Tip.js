@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import TextField from "@material-ui/core/TextField";
-import EditIcon from "@material-ui/icons/Edit";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import DoneIcon from "@material-ui/icons/Done";
-import CloseIcon from "@material-ui/icons/Close";
+import TextField from "@material-ui/core/TextField"
+import EditIcon from "@material-ui/icons/Edit"
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz"
+import DoneIcon from "@material-ui/icons/Done"
+import CloseIcon from "@material-ui/icons/Close"
 import DeleteIcon from "@material-ui/icons/Delete"
-import { Fab } from "@material-ui/core";
+import { Fab } from "@material-ui/core"
 
 import Tags from "./Tags"
 
@@ -14,32 +14,40 @@ const TipState = {
   NODETAILS: 0,
   DETAILS: 1,
   EDIT: 2
-};
+}
 
 const Tip = props => {
   const [tipState, setTipState] = useState(TipState.NODETAILS)
   const [title, setTitle] = useState(props.tip.title)
   const [link, setLink] = useState(props.tip.link)
   const [description, setDescription] = useState(props.tip.description)
-  const [tags, setTags] = useState(props.tip.tags === undefined ? [] : props.tip.tags)
+  const [tags, setTags] = useState(
+    props.tip.tags === undefined ? [] : props.tip.tags
+  )
 
   const cancel = () => {
-    setTitle(props.tip.title);
+    setTitle(props.tip.title)
     setLink(props.tip.link)
     setDescription(props.tip.description)
-    setTipState(TipState.NODETAILS);
-  };
+    setTags(props.tip.tags)
+    setTipState(TipState.NODETAILS)
+  }
 
   const save = () => {
-    props.onUpdate(props.tip.id, { title: title, link: link, description: description, tags: tags });
-    setTipState(TipState.NODETAILS);
-  };
+    props.onUpdate(props.tip.id, {
+      title: title,
+      link: link,
+      description: description,
+      tags: tags
+    })
+    setTipState(TipState.NODETAILS)
+  }
 
-  const addTag = (tag) => {
+  const addTag = tag => {
     setTags(tags.concat(tag))
   }
 
-  const deleteTag = (tag) => {
+  const deleteTag = tag => {
     setTags(tags.filter(t => t !== tag))
   }
 
@@ -57,7 +65,6 @@ const Tip = props => {
           fullWidth={true}
         />
       )}
-
       {tipState !== TipState.EDIT && <a href={link}>{link}</a>}
       {tipState === TipState.EDIT && (
         <TextField
@@ -71,8 +78,9 @@ const Tip = props => {
           fullWidth={true}
         />
       )}
-
-      {tipState === TipState.DETAILS && <p class="description">{description}</p>}
+      {tipState === TipState.DETAILS && (
+        <p className="description">{description}</p>
+      )}
       {tipState === TipState.EDIT && (
         <TextField
           id="editDescription"
@@ -85,12 +93,21 @@ const Tip = props => {
           value={description}
           onChange={e => setDescription(e.target.value)}
         />
-      )}     
-
-      {tipState !== TipState.NODETAILS && <Tags tags={tags} onAdd={addTag}  onDelete={deleteTag} editable={tipState ===  TipState.EDIT}/>}
-
+      )}
+      {tipState !== TipState.NODETAILS && (
+        <Tags
+          tags={tags}
+          onAdd={addTag}
+          onDelete={deleteTag}
+          editable={tipState === TipState.EDIT}
+        />
+      )}
       {tipState !== TipState.EDIT && (
-        <Fab name="edit" className="tipbutton" onClick={() => setTipState(TipState.EDIT)}>
+        <Fab
+          name="edit"
+          className="tipbutton"
+          onClick={() => setTipState(TipState.EDIT)}
+        >
           <EditIcon />
         </Fab>
       )}
@@ -99,14 +116,21 @@ const Tip = props => {
           <CloseIcon />
         </Fab>
       )}
-
       {tipState === TipState.NODETAILS && (
-        <Fab name="details" className="tipbutton" onClick={() => setTipState(TipState.DETAILS)}>
+        <Fab
+          name="details"
+          className="tipbutton"
+          onClick={() => setTipState(TipState.DETAILS)}
+        >
           <MoreHorizIcon />
         </Fab>
       )}
       {tipState === TipState.DETAILS && (
-        <Fab name="nodetails" className="tipbutton" onClick={() => setTipState(TipState.NODETAILS)}>
+        <Fab
+          name="nodetails"
+          className="tipbutton"
+          onClick={() => setTipState(TipState.NODETAILS)}
+        >
           <CloseIcon />
         </Fab>
       )}
@@ -115,11 +139,15 @@ const Tip = props => {
           <DoneIcon />
         </Fab>
       )}
-      <Fab name="delete" className="tipbutton" onClick={() => props.onDelete(props.tip.onClickid)}>
+      <Fab
+        name="delete"
+        className="tipbutton"
+        onClick={() => props.onDelete(props.tip.id)}
+      >
         <DeleteIcon />
       </Fab>
     </div>
-  );
-};
+  )
+}
 
-export default Tip;
+export default Tip
