@@ -119,6 +119,6 @@ describe("<TipForm> input", () => {
     `#deletetag-${newTip.tags[0]} .MuiSvgIcon-root`
     )
     fireEvent.click(oldtag)
-    expect(component.container).not.toHaveTextContent("tag2")
+    expect(component.container).not.toHaveTextContent(newTip.tags[0])
   })
 })
