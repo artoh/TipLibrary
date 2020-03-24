@@ -43,7 +43,7 @@ footer p {
   border-radius: 7px;
   box-shadow: 0 2px 5px #ccc;
   padding: 10px;
-  width: 240px;
+  width: 320px;
   margin: 16px;
   float: left;
 }
@@ -60,9 +60,10 @@ footer p {
   word-wrap: break-word;
 }
 
-.tip button {
+.tip .tipbutton {
   position: relative;
   float: right;
+  bottom: -18px;
   margin-right: 10px;
   color: #bbb;
   border: none;
