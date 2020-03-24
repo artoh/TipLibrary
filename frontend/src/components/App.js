@@ -1,43 +1,45 @@
-import React, { useState } from "react";
-import Header from "./Header";
-import Tip from "./Tip";
-import TipForm from "./TipForm";
+import React, { useState } from "react"
+import Header from "./Header"
+import Tip from "./Tip"
+import TipForm from "./TipForm"
 import tipService from "../services/tips"
-import { useEffect } from "react";
+import { useEffect } from "react"
 
 const App = () => {
-
-  const [tips, setTips] = useState([]);
+  const [tips, setTips] = useState([])
 
   useEffect(() => {
     const getTips = async () => {
       try {
         const tipsFromServer = await tipService.getAll()
         setTips(tipsFromServer)
-      } catch (e) {
-
-      }
+      } catch (e) {}
     }
 
     getTips()
   }, [])
 
-  const addTip = async (newTip) => {
+  const addTip = async newTip => {
     try {
-      console.log(newTip)
-      const result = await tipService.create({ title: newTip.title, link: newTip.link })
+      const result = await tipService.create(newTip)
       setTips(prevTips => {
-        return [...tips,
-        { title: result.title, link: result.link }];
-      });
-    } catch (e) {
-
-    }
+        return [...tips, result]
+      })
+    } catch (e) {}
   }
 
   const updateTip = async (id, tip) => {
-    const newtip = await tipService.update(id, tip)
-    setTips(tips.filter(tip => tip.id !== id).concat(newtip))
+    try {
+      const newtip = await tipService.update(id, tip)
+      setTips(tips.filter(tip => tip.id !== id).concat(newtip))
+    } catch (e) {}
+  }
+
+  const deleteTip = async id => {
+    try {
+      await tipService.deleteTip(id)
+      setTips(tips.filter(tip => tip.id !== id))
+    } catch (e) {}
   }
 
   return (
@@ -49,11 +51,13 @@ const App = () => {
           <Tip
             tip={tipItem}
             onUpdate={updateTip}
+            onDelete={deleteTip}
+            key={tipItem.id}
           />
-        );
+        )
       })}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
