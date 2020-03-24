@@ -73,7 +73,7 @@ footer p {
   outline: none;
 }
 
-form.create-tip {
+.tipform {
   position: relative;
   width: 480px;
   margin: 30px auto 20px auto;
@@ -83,7 +83,7 @@ form.create-tip {
   box-shadow: 0 1px 5px rgb(138, 137, 137);
 }
 
-form.create-tip button {
+.tipform .formbutton {
   position: absolute;
   right: 18px;
   bottom: -18px;

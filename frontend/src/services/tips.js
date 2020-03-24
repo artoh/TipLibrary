@@ -8,6 +8,7 @@ const getAll = () => {
 }
 
 const create = newTip => {
+    console.log(newTip)
     const request = axios.post(apiUrl, newTip)
     return request.then(response => response.data)
 }
