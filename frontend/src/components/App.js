@@ -5,7 +5,7 @@ import TipForm from "./TipForm";
 import tipService from "../services/tips"
 import { useEffect } from "react";
 
-function App() {
+const App = () => {
 
   const [tips, setTips] = useState([]);
 

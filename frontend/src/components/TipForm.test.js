@@ -30,6 +30,7 @@ describe("Expanded <TipForm> component", () => {
   test("Component renders title input field", () => {
     const component = render(<TipForm />)
     const titleField = component.container.querySelector("[name='title'")
+    titleField.click()
     expect(titleField).toBeInTheDocument()
   })
 
@@ -62,7 +63,7 @@ describe("<TipForm> submission", () => {
     const titleField = component.container.querySelector("[name='title'")
     titleField.click()
     fireEvent.change(titleField, { target: { value: newTip.title } })
-    const linkField = component.container.querySelector("[name=link]")
+    const linkField = component.container.querySelector("[name='link'")
     fireEvent.change(linkField, { target: { value: newTip.link } })
     const createBtn = component.container.querySelector("[name='create'")
     fireEvent.click(createBtn)
