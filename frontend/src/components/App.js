@@ -3,10 +3,13 @@ import Header from "./Header"
 import Tip from "./Tip"
 import TipForm from "./TipForm"
 import tipService from "../services/tips"
-import { useEffect } from "react"
+import { useEffect } from "react";
+import Filter from "./Filter"
 
 const App = () => {
   const [tips, setTips] = useState([])
+
+  const [filters, setFilters] = useState([])
 
   useEffect(() => {
     const getTips = async () => {
@@ -42,11 +45,23 @@ const App = () => {
     } catch (e) {}
   }
 
+  const filteredTips = filters.length < 1 ? tips : tips.filter((tip) => {
+
+
+    filters.forEach((filter) => {
+      if (tip.tags.includes(filter)) {
+        return true
+      }
+    })
+    return false
+  })
+
   return (
     <div>
       <Header />
       <TipForm onAdd={addTip} />
-      {tips.map((tipItem, index) => {
+      <Filter tips={tips} filters={filters} setFilters={setFilters}/>
+      {filteredTips.map((tipItem, index) => {
         return (
           <Tip
             tip={tipItem}
