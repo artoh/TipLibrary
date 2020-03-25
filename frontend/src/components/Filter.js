@@ -3,8 +3,6 @@ import Chip from "@material-ui/core/Chip"
 
 const Filter = (props) => {
 
-    console.log(props.tips)
-
     const availableFilters = props.tips.reduce((filters, tip) => {
         if  (!tip.tags) {
             return filters
