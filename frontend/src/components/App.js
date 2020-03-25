@@ -45,15 +45,19 @@ const App = () => {
     } catch (e) {}
   }
 
+
+  //console.log("filters: ", filters)
   const filteredTips = filters.length < 1 ? tips : tips.filter((tip) => {
 
+    let found = false
 
     filters.forEach((filter) => {
+      console.log("tagsandfilters ", tip.tags, filter, tip.tags.includes(filter))
       if (tip.tags.includes(filter)) {
-        return true
+        found = true
       }
     })
-    return false
+    return found
   })
 
   return (
