@@ -27,7 +27,7 @@ const Tags = props => {
       {props.editable && (
         <FormControl>
           <TextField
-            label="Add tags"
+            label="Tags"
             placeholder="Add a tag and click +"
             value={newTag}
             name="newtag"

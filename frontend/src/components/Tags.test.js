@@ -9,13 +9,13 @@ describe("<Tag> component rendering", () => {
   test("Rendering in read mode", () => {
     const component = render(<Tags tags={tags} />)
     expect(component.container).toHaveTextContent("tag1")
-    expect(component.container).not.toHaveTextContent("Add")
+    expect(component.container).not.toHaveTextContent("Tags")
   })
 
   test("Rendering in edit mode", () => {
     const component = render(<Tags tags={tags} editable={true} />)
     expect(component.container).toHaveTextContent("tag1")
-    expect(component.container).toHaveTextContent("Add")
+    expect(component.container).toHaveTextContent("Tags")
   })
 })
 
