@@ -23,8 +23,7 @@ const Filter = (props) => {
         let newFilters 
         if (props.filters.includes(filter)) {
             const indexToBeDeleted = props.filters.findIndex((oldFilter) => oldFilter===filter)
-            newFilters = props.filters.slice(indexToBeDeleted).concat(props.filters.slice(indexToBeDeleted + 1))
-            newFilters.splice(newFilters.findIndex((newFilter) => newFilter === filter,1))
+            newFilters = props.filters.slice(0, indexToBeDeleted).concat(props.filters.slice(indexToBeDeleted + 1))
         } else {
             newFilters = props.filters.concat(filter)
         }
