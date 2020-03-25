@@ -2,7 +2,7 @@ import React from "react"
 import { render, fireEvent } from "@testing-library/react"
 import Filter from "./Filter"
 
-const tips = [{tags: ["cat","dog"]}, {tags: ["rabbit"]}]
+const tips = [{tags: ["cat","dog"]}, {tags: ["rabbit"]}, {title: "no tags"}]
 
 const filters = ["cat"]
 
@@ -18,23 +18,7 @@ describe("Filter component fot choosing which tags to filter tips by", () => {
         await component.findAllByText("rabbit")
 
     })
-    test.skip("Shows selected filters corrrectly", async () => {
-        const component = render(<Filter tips={tips} filters={filters} setFilters={setFilters}/>)
 
-        const catChip =await component.findByText("cat")
-
-        console.log(catChip)
-
-        expect(catChip.props.color).toEqual("primary")
-
-       const dogChip = await component.findByText("dog")
-       const rabbitChip =  await component.findAllByText("rabbit")
-
-       expect (dogChip.props.color).toEqual("default")
-       expect(rabbitChip.props.color).toEqual("default") 
-
-
-    })
     test("Calls setFilters correctly when unselecetd filter is clicekd", async () => {
         const component = render(<Filter tips={tips} filters={filters} setFilters={setFilters}/>)
 
