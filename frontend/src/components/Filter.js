@@ -20,9 +20,6 @@ const Filter = (props) => {
       
     }, [])
 
-    console.log(availableFilters)
-    console.log(props.filters)
-
     const handleChipClick = (filter) => {
  
         let newFilters 
@@ -36,8 +33,6 @@ const Filter = (props) => {
 
         props.setFilters(newFilters)
 
-        console.log(filter)
-        console.log(newFilters)
     }
     return (
         <div>
@@ -46,7 +41,6 @@ const Filter = (props) => {
                 clickable
                 onClick={() => handleChipClick(filter)}
                 label={filter}
-                variant="outlined"
                 key={filter}
                 color={props.filters.includes(filter) ? "primary" : "default"}
             />))}
