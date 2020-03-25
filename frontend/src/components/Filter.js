@@ -7,7 +7,7 @@ const Filter = (props) => {
 
     const availableFilters = props.tips.reduce((filters, tip) => {
         if  (!tip.tags) {
-            return set
+            return filters
         }  
         
         tip.tags.forEach((tag) => {
