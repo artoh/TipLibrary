@@ -1,19 +1,23 @@
 import React, { useState } from "react";
+
 import TextField from '@material-ui/core/TextField';
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 
-function TipForm(props) {
+import Tags from "./Tags"
+
+const TipForm = (props) => {
   const [isExpanded, setExpanded] = useState(false);
 
   const [tip, setTip] = useState({
     title: "",
-    link: ""
+    link: "",
+    description: "",
+    tags: []
   });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     setTip(prevTip => {
       return {
         ...prevTip,
@@ -22,11 +26,31 @@ function TipForm(props) {
     });
   }
 
+  const addTags = input => {
+    const newTags = tip.tags.concat(input.split(","))
+    const editedTip = {
+      ...tip,
+      tags: newTags
+    }
+    setTip(editedTip)
+  }
+
+  const deleteTag = tag => {
+    const editedTags = tip.tags.filter(t => t !== tag)
+    const editedTip = {
+      ...tip,
+      tags: editedTags
+    }
+    setTip(editedTip)
+  }
+
   const submitTip = (event) => {
     props.onAdd(tip);
     setTip({
       title: "",
-      link: ""
+      link: "",
+      description: "",
+      tags: []
     });
     event.preventDefault();
     setExpanded(false);
@@ -38,33 +62,58 @@ function TipForm(props) {
 
   return (
     <div>
-      <form className="create-tip">
+      <form className="tipform">
         <h3>Add a new tip</h3>
+
         <TextField
           name="title"
-          variant="outlined"
           label="Title"
+          variant="outlined"
           margin="normal"
           fullWidth={true}
-          onChange={handleChange}
-          onClick={expand}
           value={tip.title}
+          onChange={handleChange}
+          onSelect={expand}
+          onClick={expand}
         />
 
         {isExpanded &&
           <TextField
             name="link"
-            variant="outlined"
             label="Link"
+            variant="outlined"
             margin="normal"
             fullWidth={true}
-            onChange={handleChange}
             value={tip.link}
+            onChange={handleChange}
           />
         }
 
         {isExpanded &&
-          <Fab name="create" onClick={submitTip}>
+          <TextField
+            name="description"
+            label="Description"
+            variant="outlined"
+            margin="normal"
+            fullWidth={true}  
+            multiline
+            value={tip.description}
+            onChange={handleChange}
+          />
+        }
+
+        {isExpanded &&
+          <Tags
+            name="tags"
+            tags={tip.tags}
+            onAdd={addTags}
+            onDelete={deleteTag}
+            editable={true}
+          />
+        }
+
+        {isExpanded &&
+          <Fab name="create" className="formbutton" onClick={submitTip}>
             <AddIcon />
           </Fab>
         }

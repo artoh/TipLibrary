@@ -17,8 +17,14 @@ const update = (id, editedTip) => {
     return request.then(response => response.data)
 }
 
+const deleteTip = (id) => {
+    const request = axios.delete(`${apiUrl}/${id}`)
+    return request.then(response => response.data)
+}
+
 export default {
     getAll: getAll,
     create: create,
-    update: update
+    update: update,
+    deleteTip: deleteTip
 }

@@ -46,4 +46,17 @@ describe('tips', () => {
             done();
         });
     });
+
+    it('returns deleted tip when deleteTip() is successfully called', done => {
+        let tipId = newTip.id;
+   
+        mock.onDelete(`/api/tips/${tipId}`).reply(200, newTip);
+
+        tipService.deleteTip(tipId).then(response => {
+            expect(response).toEqual(newTip);
+            done();
+        });
+    });
+
+
 });
