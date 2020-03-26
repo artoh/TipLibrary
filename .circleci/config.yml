@@ -2,6 +2,7 @@
 version: 2.1
 orbs:
   heroku: circleci/heroku@1.0.1
+  browser-tools: circleci/browser-tools@0.1.4
 jobs:
   build-and-test:
     docker:
@@ -65,6 +66,8 @@ jobs:
 workflows:
   heroku_deploy:
     jobs:
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
       - build-and-test
       - heroku/deploy-via-git:
           requires:
