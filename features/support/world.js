@@ -2,13 +2,17 @@ const { setWorldConstructor } = require("cucumber");
 //require("chromedriver");
 const chrome = require("selenium-webdriver/chrome")
 
+const inCircleCi = process.env.CI
+
 const seleniumWebdriver = require("selenium-webdriver")
 
 function customWorld() {
 
   const options = new chrome.Options()
 
-  options.headless()
+  if (inCircleCi) {
+    options.headless()
+  }
 
   this.driver = new seleniumWebdriver.Builder().forBrowser("chrome").setChromeOptions(options).build();
 
