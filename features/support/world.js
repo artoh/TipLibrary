@@ -6,7 +6,7 @@ const inCircleCi = process.env.CI
 
 const seleniumWebdriver = require("selenium-webdriver")
 
-setDefaultTimeout(50000)
+setDefaultTimeout(600000)
 
 function customWorld() {
 
