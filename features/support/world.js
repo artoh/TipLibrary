@@ -5,8 +5,8 @@ const seleniumWebdriver = require("selenium-webdriver")
 function customWorld() {
 
   // const options = new chrome.Options()
-  //  o ptions.setChromeBinaryPath(chromium.path)//
-  this.driver = new seleniumWebdriver.Builder().forBrowser("chrome") //.setChromeOptions(options).build();
+
+  this.driver = new seleniumWebdriver.Builder().forBrowser("chrome").build();
 
   this.waitForElement = function(locator) {
     const condition = seleniumWebdriver.until.elementLocated(locator);
