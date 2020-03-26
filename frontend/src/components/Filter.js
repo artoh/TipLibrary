@@ -38,6 +38,7 @@ const Filter = (props) => {
                 clickable
                 onClick={() => handleChipClick(filter)}
                 label={filter}
+                id={"filter_".concat(filter)}
                 key={filter}
                 color={props.filters.includes(filter) ? "primary" : "default"}
             />))}

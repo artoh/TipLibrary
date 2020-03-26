@@ -2,6 +2,7 @@
 version: 2.1
 orbs:
   heroku: circleci/heroku@1.0.1
+  browser-tools: circleci/browser-tools@0.1.4
 jobs:
   build-and-test:
     docker:
@@ -47,15 +48,13 @@ jobs:
             ../tmp/cc-test-reporter upload-coverage -i ../tmp/codeclimate.frontend.json
             bash <(curl -s https://codecov.io/bash)
 
-      #      - run:
-      #          name: Run cucumber acceptance tests
-      #
-      #          command: |
-      #            apt-get install chromium-browser
-      #            npm start & ./node_modules/.bin/cucumber-js --name "Front Page"
-      #            ./node_modules/.bin/cucumber-js --name "user can create a new tip with link"
-      #            ./node_modules/.bin/cucumber-js --name "user can create a new tip title"
-      #            ./node_modules/.bin/cucumber-js --name "user can edit a title"
+      - browser-tools/install-chrome
+
+      - browser-tools/install-chromedriver
+
+#      - run:
+#          name: Run cucumber acceptance tests
+#          command: npm start & ./node_modules/.bin/cucumber-js 
 
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
