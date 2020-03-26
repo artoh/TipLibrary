@@ -19,7 +19,7 @@ Feature: As a user I want to be able to filter tips by tags
     Given I am on the front page
     And a tip with tag "tag1" exists
     And a tip with tag "tag2" exists
-    And a tip with tag "tag3" exits
+    And a tip with tag "tag3" exists
     When tip chip "tag1" is clicked
     And tip chip "tag2" is clicked
     Then a tip with tag "tag1" is shown

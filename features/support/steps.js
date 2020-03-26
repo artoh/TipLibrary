@@ -3,65 +3,64 @@ const { By, Key } = require("selenium-webdriver")
 const { expect } = require("chai")
 
 Given("I am on the front page", async function() {
-  await this.driver.get("localhost:3001");
-});
+  await this.driver.get("localhost:3001")
+})
 
 When("edit button is clicked", async function() {
-  editButtons = await this.waitForElements(By.name("edit"));
+  editButtons = await this.waitForElements(By.name("edit"))
   editButton = editButtons.pop()
-  await editButton.click();
-});
+  await editButton.click()
+})
 
 When("{string} is written to the edit title field", function(string) {
-  titleFields = this.waitForElements(By.name("title"));
+  titleFields = this.waitForElements(By.name("title"))
   titleField = titleFields.pop()
-  titleField.sendKeys(string);
-});
+  titleField.sendKeys(string)
+})
 
 Then("a tip with {string} as title is shown", async function(string) {
-
-  tips = await this.waitForElements(By.className("tip"));
+  tips = await this.waitForElements(By.className("tip"))
   tip = tips.pop()
 
-  const text = await tip.getText();
+  const text = await tip.getText()
 
   expect(text).to.contain(string)
 })
 
 When("Button + is pressed", async function() {
-  button = this.waitForElement(By.name("create"));
+  button = this.waitForElement(By.name("create"))
 
-  await button.click();
-  this.driver.sleep(4000);
-});
+  await button.click()
+  this.driver.sleep(4000)
+})
 
 When("the save button is pressed", async function() {
-  saveButton = this.waitForElement(By.name("save"));
-  await saveButton.click();
-  this.driver.sleep(4000);
-});
+  saveButton = this.waitForElement(By.name("save"))
+  await saveButton.click()
+  this.driver.sleep(4000)
+})
 
 When("an {string} is written to edit link field", async function(string) {
-  linkFields = await this.waitForElements(By.name("link"));
+  linkFields = await this.waitForElements(By.name("link"))
   linkField = linkField.pop()
-  linkField.sendKeys(string);
-});
+  linkField.sendKeys(string)
+})
 
 Then("the link of the tip should be the {string}", async function(string) {
-  tips = await this.waitForElements(By.className("tip"));
+  tips = await this.waitForElements(By.className("tip"))
   const tip = tips.pop()
-  const text = await tip.getText();
+  const text = await tip.getText()
 
   expect(text).to.contain(string)
 })
 
 Then("the title of the tip should be {string}", async function(string) {
   this.driver.sleep(4000)
-  tips = await this.waitForElements(By.className("tip"));
-  const tip = tips.pop();
-  const text = await tip.getText();
-  expect(text).to.contain(string);
-});
+  tips = await this.waitForElements(By.className("tip"))
+  const tip = tips.pop()
+  const text = await tip.getText()
+  expect(text).to.contain(string)
+})
 
 When("{string} is written in the add title field", function(string) {
   titleField = this.waitForElement(By.name("title"))
@@ -76,17 +75,18 @@ Then("a tip with the link {string} is shown", async function(string) {
   expect(text).to.contain(string)
 })
 
-When("an {string} is entered to the add tip link field", async function(string) {
-
-  titleFields = await this.waitForElements(By.name("link"));
+When("an {string} is entered to the add tip link field", async function(
+  string
+) {
+  titleFields = await this.waitForElements(By.name("link"))
   titleField = titleFields.pop()
-  await titleField.sendKeys(string);
-});
+  await titleField.sendKeys(string)
+})
 
 Given("add title field is clicked", async function() {
-  titleField = this.waitForElement(By.name("title"));
-  await titleField.click();
-});
+  titleField = this.waitForElement(By.name("title"))
+  await titleField.click()
+})
 
 When(
   "the link is modified to be {string} in the edit link field",
@@ -108,7 +108,7 @@ When(
 )
 
 When("{string} is written in the edit title field", async function(string) {
-  titleFields = await this.waitForElements(By.name("title"));
+  titleFields = await this.waitForElements(By.name("title"))
   titleField = titleFields.pop()
   titleField.sendKeys(
     Key.BACK_SPACE,
@@ -121,17 +121,17 @@ When("{string} is written in the edit title field", async function(string) {
 })
 
 Given("a tip exists", async function() {
-  titleField = this.waitForElement(By.name("title"));
-  await titleField.click();
-  await titleField.sendKeys("title");
+  titleField = this.waitForElement(By.name("title"))
+  await titleField.click()
+  await titleField.sendKeys("title")
 
-  linkField = this.waitForElement(By.name("link"));
-  await linkField.click();
-  await linkField.sendKeys("link");
+  linkField = this.waitForElement(By.name("link"))
+  await linkField.click()
+  await linkField.sendKeys("link")
 
-  button = this.waitForElement(By.name("create"));
-  await button.click();
-});
+  button = this.waitForElement(By.name("create"))
+  await button.click()
+})
 
 When("{string} is entered to the add tag field", async function(string) {
   tagFields = await this.waitForElements(By.name("newtag"))
@@ -191,17 +191,41 @@ Then("a tip without the tag {string} is shown", async function(string) {
 })
 
 Then("a tip with tag {string} is shown", async function(string) {
-  tips = await this.waitForElements(By.name("details"))
+  details = await this.waitForElements(By.name("details"))
+  for (i = 0; i < details.length; i++) await details[i].click()
+
+  tips = await this.waitForElements(By.className("tip"))
   let txt = ""
   for (i = 0; i < tips.length; i++) {
-    await tips[i].click()
-    txt = txt.concat(await tips[i].text)
+    txt = txt.concat(await tips[i].getText())
   }
+
+  this.driver.sleep(500)
+  closes = await this.waitForElements(By.name("nodetails"))
+  for (i = 0; i < closes.length; i++) await closes[i].click()
 
   expect(txt).contain(string)
 })
 
+Then("a tip with tag {string} is not shown", async function(string) {
+  details = await this.waitForElements(By.name("details"))
+  for (i = 0; i < details.length; i++) await details[i].click()
+
+  tips = await this.waitForElements(By.className("tip"))
+  let txt = ""
+  for (i = 0; i < tips.length; i++) {
+    txt = txt.concat(await tips[i].getText())
+  }
+
+  this.driver.sleep(500)
+  closes = await this.waitForElements(By.name("nodetails"))
+  for (i = 0; i < closes.length; i++) await closes[i].click()
+
+  expect(txt).not.contain(string)
+})
+
 When("tip chip {string} is clicked", async function(string) {
-  chip = await this.waitForElement(By.id("filter_" + string))
-  await chip.click()
+  this.driver.sleep(500)
+  chip = await this.waitForElements(By.id("filter_" + string))
+  await chip.pop().click()
 })
