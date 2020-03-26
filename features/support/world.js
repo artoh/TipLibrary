@@ -1,10 +1,12 @@
-const { setWorldConstructor } = require("cucumber");
+const { setWorldConstructor, setDefaultTimeout } = require("cucumber");
 //require("chromedriver");
 const chrome = require("selenium-webdriver/chrome")
 
 const inCircleCi = process.env.CI
 
 const seleniumWebdriver = require("selenium-webdriver")
+
+setDefaultTimeout(50000)
 
 function customWorld() {
 

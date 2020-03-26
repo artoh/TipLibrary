@@ -68,9 +68,9 @@ When("{string} is written in the add title field", function(string) {
 })
 
 Then("a tip with the link {string} is shown", async function(string) {
-  tip = this.waitForElement(By.className("tip"))
-
-  const text = await tip.getText()
+  tips = this.waitForElements(By.className("tip"));
+  const tip = tips.pop()
+  const text = await tip.getText();
 
   expect(text).to.contain(string)
 })
