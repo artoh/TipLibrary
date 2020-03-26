@@ -10,7 +10,7 @@ function customWorld() {
 
   options.headless()
 
-  this.driver = new seleniumWebdriver.Builder().forBrowser("chrome").setChromeOptions(Option).build();
+  this.driver = new seleniumWebdriver.Builder().forBrowser("chrome").setChromeOptions(options).build();
 
   this.waitForElement = function(locator) {
     const condition = seleniumWebdriver.until.elementLocated(locator);
