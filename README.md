@@ -23,3 +23,6 @@ Features
   - [As a user I want to be able to edit the tip title](/features/editingTipTitle.feature)
 - Editing the tip link
   - [As a user I want to be able to edit the tip link](/features/editingTipLink.feature)
+- Using tags
+  - [As a user I want to be able to add tags to a tip](/features/addTags.feature)
+  - [As a user I want to be able to filter tips by tags](/features/filteringByTag.feature)
