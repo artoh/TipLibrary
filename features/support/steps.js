@@ -16,11 +16,12 @@ When("{string} is written to the edit title field", function(string) {
   titleField.sendKeys(string);
 });
 
-Then("a tip with {string} as title is shown", function(string) {
+Then("a tip with {string} as title is shown", async function(string) {
   tip = this.waitForElement(By.className("tip"));
-  tip.getText().then(text => {
-    expect(text).to.contain(string);
-  });
+
+  const text = await tip.getText();
+
+  expect(text).to.contain(string);
 });
 
 When("Button + is pressed", function() {
@@ -40,19 +41,19 @@ When("an {string} is written to edit link field", function(string) {
   linkFields[2].sendKeys(string);
 });
 
-Then("the link of the tip should be the {string}", function(string) {
+Then("the link of the tip should be the {string}", async function(string) {
   tip = this.waitForElement(By.className("tip"));
-  tip.getText().then(text => {
-    expect(text).to.contain(string);
-  });
+
+  const text = await tip.getText();
+
+  expect(text).to.contain(string);
 });
 
 Then("the title of the tip should be {string}", async function(string) {
   tips = await this.waitForElements(By.className("tip"));
   const tip = tips.pop();
-  tip.getText().then(text => {
-    expect(text).to.contain(string);
-  });
+  const text = await tip.getText();
+  expect(text).to.contain(string);
 });
 
 When("{string} is written in the add title field", function(string) {
@@ -62,9 +63,10 @@ When("{string} is written in the add title field", function(string) {
 
 Then("a tip with the link {string} is shown", async function(string) {
   tip = this.waitForElement(By.className("tip"));
-  tip.getText().then(text => {
-    expect(text).to.contain(string);
-  });
+
+  const text = await tip.getText();
+
+  expect(text).to.contain(string);
 });
 
 When("an {string} is entered to the add tip link field", function(string) {
@@ -82,7 +84,7 @@ When(
   async function(string) {
     //linkField = this.waitForElement(By.id("editLink"));
     this.driver.sleep(2000);
-    const linkFields = await this.driver.findElements(By.name("title"));
+    const linkFields = await this.driver.findElements(By.name("link"));
     this.driver.sleep(2000);
     const linkField = linkFields.pop();
 
