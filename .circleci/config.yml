@@ -37,8 +37,13 @@ jobs:
             npm test
       #            ./tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ./tmp/codeclimate.total.json
       #            ./tmp/cc-test-reporter upload-coverage -i ./tmp/codeclimate.total.json
+     
+      - browser-tools/install-chrome
+
+      - browser-tools/install-chromedriver
+      
       - run:
-          name: Build and run jest unit tests for frontend
+          name: Build frontend, run jest unit tests for frontend and run acceptance tests
           command: |
             cd frontend
             npm install
@@ -47,14 +52,8 @@ jobs:
             ../tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ../tmp/codeclimate.frontend.json
             ../tmp/cc-test-reporter upload-coverage -i ../tmp/codeclimate.frontend.json
             bash <(curl -s https://codecov.io/bash)
-
-      - browser-tools/install-chrome
-
-      - browser-tools/install-chromedriver
-
-      - run:
-          name: Run cucumber acceptance tests
-          command: npm start & ./node_modules/.bin/cucumber-js 
+            cd ..
+            npm start & ./node_modules/.bin/cucumber-js 
 
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
