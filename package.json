@@ -7,7 +7,8 @@
     "test": "jest --runInBand",
     "start": "node index.js",
     "watch": "nodemon index.js",
-    "heroku-postbuild": "cd frontend && npm install && npm run build"
+    "heroku-postbuild": "cd frontend && npm install && npm run build",
+    "cucumber": "./node_modules/.bin/cucumber-js"
   },
   "repository": {
     "type": "git",
