@@ -47,16 +47,12 @@ jobs:
             ../tmp/cc-test-reporter format-coverage ./coverage/lcov.info -t lcov -o ../tmp/codeclimate.frontend.json
             ../tmp/cc-test-reporter upload-coverage -i ../tmp/codeclimate.frontend.json
             bash <(curl -s https://codecov.io/bash)
-
-      #      - run:
-      #          name: Run cucumber acceptance tests
-      #
-      #          command: |
-      #            apt-get install chromium-browser
-      #            npm start & ./node_modules/.bin/cucumber-js --name "Front Page"
-      #            ./node_modules/.bin/cucumber-js --name "user can create a new tip with link"
-      #            ./node_modules/.bin/cucumber-js --name "user can create a new tip title"
-      #            ./node_modules/.bin/cucumber-js --name "user can edit a title"
+     - run:
+bbrname: Run cucumber acceptance tests
+          command: |           
+            browser-tools/install-chrome
+            browser-tools/install-chromedriver
+            npm start & ./node_modules/.bin/cucumber-js 
 
       - save_cache:
           key: node-deps-v1-{{ .Branch }}-{{ checksum "package.json" }}
@@ -66,8 +62,6 @@ jobs:
 workflows:
   heroku_deploy:
     jobs:
-      - browser-tools/install-chrome
-      - browser-tools/install-chromedriver
       - build-and-test
       - heroku/deploy-via-git:
           requires:
