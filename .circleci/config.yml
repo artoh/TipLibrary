@@ -48,9 +48,9 @@ jobs:
             ../tmp/cc-test-reporter upload-coverage -i ../tmp/codeclimate.frontend.json
             bash <(curl -s https://codecov.io/bash)
 
-      - browser-tools/install-chrome:
-        
-      - browser-tools/install-chromedriver:
+      - browser-tools/install-chrome
+
+      - browser-tools/install-chromedriver
 
       - run:
           name: Run cucumber acceptance tests
