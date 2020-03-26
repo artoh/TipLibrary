@@ -84,10 +84,10 @@ When("an {string} is entered to the add tip link field", async function(string) 
 });
 
 Given("add title field is clicked", async function() {
-  console.log("title field")
   titleField = this.waitForElement(By.name("title"));
   console.log(titleField)
   await titleField.click();
+  console.log("title field clicked")
 });
 
 When(
