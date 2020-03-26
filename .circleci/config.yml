@@ -50,8 +50,8 @@ jobs:
       - run:
           name: Run cucumber acceptance tests
           command: |           
-            browser-tools/install-chrome
-            browser-tools/install-chromedriver
+            browser-tools/install-chrome:
+            browser-tools/install-chromedriver:
             npm start & ./node_modules/.bin/cucumber-js 
 
       - save_cache:
