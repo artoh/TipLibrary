@@ -3,7 +3,7 @@ const { By, Key } = require("selenium-webdriver")
 const { expect } = require("chai")
 
 Given("I am on the front page", async function () {
-  await this.driver.get("localhost:3001")
+  await this.driver.get("http://localhost:3001")
 })
 
 When("edit button is clicked", async function () {
