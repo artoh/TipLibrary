@@ -6,17 +6,21 @@ const inCircleCi = process.env.CI
 
 const seleniumWebdriver = require("selenium-webdriver")
 
-setDefaultTimeout(600000)
+setDefaultTimeout(6000)
 
 function customWorld() {
 
   const options = new chrome.Options()
 
-  if (inCircleCi) {
-    options.headless()
-  }
+ // if (inCircleCi) {
+//    options.headless()
+    options.addArguments("disable-gpu")
+    options.setChromeLogFile("chromelog")
+    options.windowSize({width: 1200, height: 600})
+ // }
 
   this.driver = new seleniumWebdriver.Builder().forBrowser("chrome").setChromeOptions(options).build();
+
 
   this.waitForElement = function(locator) {
     const condition = seleniumWebdriver.until.elementLocated(locator);
