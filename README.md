@@ -31,3 +31,6 @@ Features
   - [As a user I want to be able to filter tips by tags](/features/filteringByTag.feature)
 - Deleting a tip
   - [As a user I want to be able to delete a tip](/features/deleteTip.feature)
+
+***
+[Loppuraportti](raportti.md)
